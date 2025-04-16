@@ -17,9 +17,13 @@
 
   </head>
 
-  <body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
+<body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
     <!-- Sidebar -->
-    <aside class="sidebar md:w-1/4 w-full">
+    <!-- Toggle Button (hanya muncul di mobile) -->
+<button id="toggleSidebar" class="md:hidden p-2 m-2 text-green-800">
+  ☰ Menu
+</button>
+    <aside id="sidebar" class="sidebar md:w-1/4 w-full hidden md:block">
       <div class="profile text-center mb-6">
         <h3 class="font-bold text-green-600">IPB University</h3>
         <p class="text-sm text-gray-600">Geofisika dan Meteorologi</p>
@@ -186,5 +190,15 @@
   </section>
 </div> 
   </main>
+  <script>
+  const btn = document.getElementById('toggleSidebar');
+  const sidebar = document.getElementById('sidebar');
+
+  btn.addEventListener('click', () => {
+    sidebar.classList.toggle('hidden');
+  });
+</script>
+
+</body>
 </html>
  
