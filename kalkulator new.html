@@ -18,11 +18,9 @@
   </head>
 
   <body class="flex flex-col md:flex-row bg-kalkulator text-gray-800 min-h-screen">
-<button id="toggleSidebar" class="md:hidden p-2 m-2 text-green-800">
-  ☰ Menu
-</button>
+
     <!-- Sidebar -->
-    <aside id="sidebar" class="sidebar md:w-1/4 w-full hidden md:block">
+    <aside class="sidebar md:w-1/4 w-full">
       <div class="profile text-center mb-6">
         <h3 class="font-bold text-green-600">IPB University</h3>
         <p class="text-sm text-gray-600">Geofisika dan Meteorologi</p>
@@ -120,7 +118,6 @@
   </main>
  
   <!--Script-->
-  
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const jenisRisikoSelect = document.getElementById("jenisRisiko");
@@ -216,14 +213,5 @@
         hasilDiv.innerHTML = hasilHTML;
       });
     })
-  </script>
-    <script>
-  const btn = document.getElementById('toggleSidebar');
-  const sidebar = document.getElementById('sidebar');
-
-  btn.addEventListener('click', () => {
-    sidebar.classList.toggle('hidden');
-  });
-</script>
-  </body>
+  </script>   
 </html>
