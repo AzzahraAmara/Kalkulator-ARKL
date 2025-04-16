@@ -286,3 +286,49 @@ img.rounded-lg.shadow:hover {
   background-attachment: fixed;
   min-height: 100vh;
 }
+
+/* Tombol Toggle Sidebar */
+.toggle-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  z-index: 9999;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* Tampilkan tombol di semua ukuran layar */
+@media (max-width: 1024px) {
+  .toggle-btn {
+    display: block;
+  }
+}
+
+/* Responsive Sidebar */
+.sidebar {
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+  width: 250px;
+  z-index: 999;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+/* Konten utama menyesuaikan */
+main {
+  margin-left: 270px;
+  transition: margin 0.3s ease;
+}
+
+.sidebar.hidden + main {
+  margin-left: 1rem;
+}
+
