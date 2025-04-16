@@ -9,19 +9,15 @@
   </head>
 
 <body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
-  <!-- Toggle Button (Tombol untuk membuka/menutup sidebar) -->
-
-  <!-- Sidebar -->
- <aside id="sidebar" class="hidden md:block w-full md:w-1/4">
-     <button id="toggleSidebar" class="p-4 text-green-800 bg-white fixed top-4 left-4 z-50">
-    ☰ Menu
-  </button>
+    <!-- Sidebar -->
+    <aside class="sidebar md:w-1/4 w-full">
       <div class="profile text-center mb-6">
         <h3 class="font-bold text-green-600">IPB University</h3>
         <p class="text-sm text-gray-600">Geofisika dan Meteorologi</p>
         <img src="img/Logo IPB.png" alt="Logo IPB" class="mx-auto mt-4 w-24 rounded-full" />
       </div>
 
+      <!-- Menu -->
       <ul class="space-y-4 text-green-800 font-medium">
         <li><a href="./Kalkulator Arkl Revisi 2.html" class="hover:text-green-600">Tentang ARKL</a></li>
         <li><a href="./kalkulator new.html" class="hover:text-green-600">Kalkulator ARKL</a></li>
@@ -181,14 +177,5 @@
   </section>
 </div> 
   </main>
- <!-- Script untuk mengatur sidebar -->
-<script>
-  const toggleBtn = document.getElementById('toggleSidebar');
-  const sidebar = document.getElementById('sidebar');
-
-  toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('hidden');
-  });
-</script>
   </body>
 </html>
