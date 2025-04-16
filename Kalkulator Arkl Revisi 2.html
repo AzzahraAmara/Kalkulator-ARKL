@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+  <link rel="stylesheet" href="styles.css">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator ARKL – Analisis Risiko Kesehatan Lingkungan</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  </head>
+
+  <body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
+    <!-- Sidebar -->
+    <aside class="sidebar md:w-1/4 w-full">
+      <div class="profile text-center mb-6">
+        <h3 class="font-bold text-green-600">IPB University</h3>
+        <p class="text-sm text-gray-600">Geofisika dan Meteorologi</p>
+        <img src="img/Logo IPB.png" alt="Logo IPB" class="mx-auto mt-4 w-24 rounded-full" />
+      </div>
+
+      <!-- Menu -->
+      <ul class="space-y-4 text-green-800 font-medium">
+        <li><a href="./Kalkulator Arkl Revisi 2.html" class="hover:text-green-600">Tentang ARKL</a></li>
+        <li><a href="./kalkulator new.html" class="hover:text-green-600">Kalkulator ARKL</a></li>
+        <li><a href="./profil.html" class="hover:text-green-600">Profil</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 relative p-4 sm:p-6 md:p-8 space-y-8">
+
+      <!-- Overlay transparan untuk efek gelap/putih -->
+      <div class="absolute inset-0 bg-white bg-opacity-60 pointer-events-none z-0"></div>
+
+<!-- Bagian Tentang ARKL -->
+<div class="relative z-10">
+<section id="tentang" class="content-section">
+    <h2 class="text-2xl font-bold text-green-700 mb-4">Apa itu ARKL?</h2>
+    <p class="text-sm text-gray-700 leading-relaxed mb-4 bg-white bg-opacity-50 backdrop-blur-md rounded-xl p-6 shadow-lg">
+      ARKL (Analisis Risiko Kesehatan Lingkungan) adalah sebuah proses yang digunakan untuk menghitung atau 
+      memperkirakan risiko terhadap kesehatan manusia. Proses ini melibatkan identifikasi faktor ketidakpastian, 
+      penelusuran pajanan terhadap agen tertentu, serta mempertimbangkan karakteristik dari agen dan sasaran spesifik 
+      yang terpapar. <br>
+      Dengan kata lain, ARKL merupakan metode untuk mengevaluasi potensi dampak negatif terhadap kesehatan manusia 
+      akibat faktor lingkungan seperti polusi udara, pencemaran air, limbah berbahaya, dan bahan kimia. Proses ini 
+      bertujuan untuk mengidentifikasi, menilai, dan mengelola risiko yang ada, serta merancang langkah-langkah 
+      mitigasi untuk meminimalkan dampaknya.
+    </p>
+    <p class="text-xs text-black-600 mb-6"> 
+      Sumber: Direktorat Jenderal PP dan PL (2012)<br />
+      <a href="img/Pedoman ARKL.pdf" target="_blank" class="text-blue-600 underline">
+        Pedoman ARKL 
+      </a>
+    </p>
+  
+    <h2 class="text-2xl font-bold text-green-700 mb-4">Apa manfaatnya ARKL Untuk Kita?</h2>
+    <ul class="text-sm text-gray-700 leading-relaxed mb-4 bg-white bg-opacity-50 backdrop-blur-md rounded-xl p-6 shadow-lg">
+      <li>Memberikan informasi penting dalam pembuatan kebijakan dan regulasi yang lebih efektif.</li>
+      <li>Meningkatkan kesadaran masyarakat terhadap risiko kesehatan dan cara melindungi diri serta lingkungan.</li>
+      <li>Mengidentifikasi masalah lingkungan yang dapat membahayakan kesehatan manusia.</li>
+      <li>Memungkinkan pengambilan langkah proaktif untuk melindungi diri dan komunitas dari potensi bahaya lingkungan.</li>
+    </ul>
+
+    <h1 class="text-2xl font-bold text-green-700 mt-8 mb-5 text-center">Rumus Perhitungan ARKL</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+
+      <!-- Non-Karsinogenik -->
+      <div class="bg-emerald-100 p-6 rounded-2xl shadow space-y-5">
+        <h2 class="text-xl font-semibold text-emerald-800 text-center">Non-Karsinogenik</h2>
+    
+        <div>
+          <h3 class="font-semibold text-gray-700 mb-1">1. Inhalasi (Terhirup)</h3>
+          <p class="text-sm mb-1">Rumus:</p>
+          <div class="bg-white p-3 rounded-lg overflow-x-auto text-sm"><code>
+    I<sub>inh</sub> = (C × R<sub>inh</sub> x t<sub>E</sub> × f<sub>E</sub> × D<sub>t</sub>) / (W<sub>b</sub> × T<sub>avg</sub>)
+          </code></div>
+        </div>
+    
+        <div>
+          <h3 class="font-semibold text-gray-700 mb-1">2. Ingestasi (Tertelan)</h3>
+          <p class="text-sm mb-1">Rumus:</p>
+          <div class="bg-white p-3 rounded-lg overflow-x-auto text-sm"><code>
+    I<sub>ing</sub> = (C × R<sub>ing</sub> x f<sub>E</sub> × D<sub>t</sub>) / (W<sub>b</sub> × T<sub>avg</sub>)
+          </code></div>
+        </div>
+    
+        <div>
+          <p class="text-sm text-gray-600 font-semibold">Keterangan:</p>
+          <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+            <li><strong>C</strong>: Konsentrasi agen risiko
+                pada media udara</li>
+            <li><strong>R</strong>: Laju inhalasi atau
+                banyaknya volume udara
+                yang masuk setiap jamnya </li>
+            <li><strong>t<sub>E</sub></strong>: Lamanya atau jumlah jam
+                terjadinya pajanan setiap
+                harinya</li>
+            <li><strong>f<sub>E</sub></strong>: Lamanya atau jumlah hari
+                terjadinya pajanan setiap
+                tahunnya</li>
+            <li><strong>D<sub>t</sub></strong>: Lamanya atau jumlah tahun
+                terjadinya pajanan</li>
+            <li><strong>W<sub>b</sub></strong>: Berat badan manusia</li>
+            <li><strong>T<sub>avg</sub><sub> non-carc</sub></strong>: Periode waktu rata – rata
+                untuk efek non karsinogenik</li>
+          </ul>
+        </div>
+      </div>
+    
+      <!-- Karsinogenik -->
+      <div class="bg-emerald-100 p-6 rounded-2xl shadow space-y-5">
+        <h2 class="text-xl font-semibold text-emerald-800 text-center">Karsinogenik</h2>
+    
+        <div>
+          <h3 class="font-semibold text-gray-700 mb-1">1. Inhalasi (Terhirup)</h3>
+          <p class="text-sm mb-1">Rumus:</p>
+          <div class="bg-white p-3 rounded-lg overflow-x-auto text-sm"><code>
+    I<sub>inh</sub> = (C × R<sub>ing</sub> x f<sub>E</sub> × D<sub>t</sub>) / (W<sub>b</sub> × T<sub>avg</sub>)
+        </code></div>
+        </div>
+    
+        <div>
+          <h3 class="font-semibold text-gray-700 mb-1">2. Ingestasi (Tertelan)</h3>
+          <p class="text-sm mb-1">Rumus:</p>
+          <div class="bg-white p-3 rounded-lg overflow-x-auto text-sm"><code>
+    I<sub>ing</sub> = (C × R<sub>ing</sub> x f<sub>E</sub> × D<sub>t</sub>) / (W<sub>b</sub> × T<sub>avg</sub>)
+        </code></div>
+        </div>
+    
+        <div>
+            <p class="text-sm text-gray-600 font-semibold">Keterangan:</p>
+            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+              <li><strong>C</strong>: Konsentrasi agen risiko
+                  pada media udara</li>
+              <li><strong>R</strong>: Laju inhalasi atau
+                  banyaknya volume udara
+                  yang masuk setiap jamnya </li>
+              <li><strong>t<sub>E</sub></strong>: Lamanya atau jumlah jam
+                  terjadinya pajanan setiap
+                  harinya</li>
+              <li><strong>f<sub>E</sub></strong>: Lamanya atau jumlah hari
+                  terjadinya pajanan setiap
+                  tahunnya</li>
+              <li><strong>D<sub>t</sub></strong>: Lamanya atau jumlah tahun
+                  terjadinya pajanan</li>
+              <li><strong>W<sub>b</sub></strong>: Berat badan manusia</li>
+              <li><strong>T<sub>avg</sub><sub> carc</sub></strong>: Periode waktu rata – rata
+                  untuk efek non karsinogenik</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-green-700 mb-4">Dosis Referensi/<em>Reference Concentration</em>(RfC)</h2>
+    <p class="text-sm text-gray-700 leading-relaxed mb-4 bg-white bg-opacity-50 backdrop-blur-md rounded-xl p-6 shadow-lg">
+        Penentuan analisis dosis referensi merupakan tahapan yang dilakukan untuk mencari nilai dosis referensi (RfC) dari polutan yang telah ditetapkan konsentrasinya dalam kerangka analisis risiko kesehatan lingkungan melalui kajian pustaka yang mendalam.
+        Beberapa parameter agen resiko sudah terdaftar di data IRIS <em>(Integrated Risk Information System)</em> maupun MRL <em>(Minimum Risk Level)</em>. Nilai RfC ini bisa digitung berdasarkan baku mutu atau ambang batas resmi. Rumus nilai RfC menggunakan rumus yang sama dengan Intake hanya saja konsentrasi diganti dengan konsentrasi ambang batas dari referensi yang diambil.
+    </p>
+
+    <h2 class="text-2xl font-bold text-green-700 mb-2">Karakterisasi Resiko/<em>Risk Quotient</em>(RQ)</h2>
+    <!-- Penjelasan awal (paragraf biasa) -->
+    <p class="text-sm text-gray-700 leading-relaxed mb-4 bg-white bg-opacity-50 backdrop-blur-md rounded-xl p-6 shadow-lg">
+      Karakterisasi risiko atau <em>Risk Quotient</em>(RQ) dilakukan untuk menentukan risiko yang dihitung dengan membandingkan nilai intake tiap-tiap responden dengan nilai dosis referensinya (RfC). Persamaan dari perhitungan karakterisasi risiko dilakukan dengan persamaan berikut:
+    </p>
+    
+    <!-- Rumus di tengah -->
+    <div class="w-fit mx-auto mt-1 mb-3">
+      <div class="bg-white p-3 rounded-lg overflow-x-auto text-sm">
+      <code>RQ = Intake/RfC</code>
+      </div>
+    </div>
+    
+    <!-- Penjelasan lanjut -->
+    <p class="text-sm text-gray-700 leading-relaxed mb-4 bg-white bg-opacity-50 backdrop-blur-md rounded-xl p-6 shadow-lg">
+      Apabila nilai RQ ≤ 1, hal tersebut menunjukkan bahwa pemajanan agen risiko masih aman bagi manusia.
+      Berbeda jika nilai RQ > 1, berarti pemajanan agen risiko tidak aman bagi kesehatan manusia dan perlu dilakukan pengendalian.
+    </p>    
+  </section>
+</div> 
+  </main>
+</html>
+ 

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator ARKL Interaktif</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f0f8ff, #e0ffff);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #1e90ff;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #ffffffd9;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select, button {
+      padding: 0.5rem;
+      width: 100%;
+      margin-top: 0.3rem;
+    }
+    button {
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #007acc;
+    }
+    #result {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    #chart-container, #map {
+      margin-top: 2rem;
+    }
+    #map {
+      height: 300px;
+    }
+    .info-box {
+      background: #e6f7ff;
+      border-left: 6px solid #1e90ff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .safe {
+      color: green;
+    }
+    .danger {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Kalkulator ARKL Interaktif</h1>
+
+    <div class="info-box">
+      <h2>Apa itu ARKL?</h2>
+      <p>
+        ARKL (Analisis Risiko Kesehatan Lingkungan) adalah metode untuk menilai potensi risiko kesehatan manusia akibat paparan polutan lingkungan seperti udara, air, dan tanah. Perhitungan ini membantu menentukan apakah paparan terhadap zat tertentu aman atau berisiko.<br>
+        <em>Sumber: USEPA 1989, WHO Air Quality Guidelines 2006</em>
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h3>Rumus RQ (Risk Quotient)</h3>
+      <p><strong>RQ = Intake / RfD</strong></p>
+      <p>Jika RQ < 1: Aman<br>Jika RQ ≥ 1: Berisiko</p>
+    </div>
+
+    <h2>Input Data Paparan</h2>
+    <div class="form-group">
+      <label for="polutan">Jenis Polutan:</label>
+      <select id="polutan">
+        <option value="SO2">SO₂</option>
+        <option value="CO">CO</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="konsentrasi">Konsentrasi (mg/m³ atau mg/kg):</label>
+      <input type="number" id="konsentrasi" step="0.01">
+    </div>
+
+    <h3>1. Jalur Inhalasi</h3>
+    <div class="form-group">
+      <label for="durasi">Durasi Paparan (hari):</label>
+      <input type="number" id="durasi" step="1">
+    </div>
+    <div class="form-group">
+      <label for="inhalasi">Laju Inhalasi (m³/hari):</label>
+      <input type="number" id="inhalasi" value="20">
+    </div>
+
+    <h3>2. Jalur Ingesti</h3>
+    <div class="form-group">
+      <label for="ingesti">Dosis Paparan Ingesti (mg/kg/hari):</label>
+      <input type="number" id="ingesti" step="0.01">
+    </div>
+
+    <div class="form-group">
+      <label for="berat">Berat Badan (kg):</label>
+      <input type="number" id="berat" value="70">
+    </div>
+
+    <button onclick="hitungRQ()">Hitung RQ</button>
+    <div id="result"></div>
+
+    <div id="chart-container">
+      <canvas id="chart"></canvas>
+    </div>
+
+    <div id="map"></div>
+  </div>
+
+  <script>
+    function hitungRQ() {
+      const polutan = document.getElementById("polutan").value;
+      const C = parseFloat(document.getElementById("konsentrasi").value);
+      const E = parseFloat(document.getElementById("durasi").value);
+      const IR = parseFloat(document.getElementById("inhalasi").value);
+      const IngestiDose = parseFloat(document.getElementById("ingesti").value);
+      const BW = parseFloat(document.getElementById("berat").value);
+
+      const RfD = polutan === "SO2" ? 0.02 : 0.04; // mg/kg/hari
+
+      const IntakeInhalasi = (C * IR) / BW;
+      const RQ_Inhalasi = IntakeInhalasi / RfD;
+      const RQ_Ingesti = IngestiDose / RfD;
+
+      const hasil = `
+        <p>RQ Inhalasi: <span class="${RQ_Inhalasi >= 1 ? 'danger' : 'safe'}">${RQ_Inhalasi.toFixed(2)}</span></p>
+        <p>RQ Ingesti: <span class="${RQ_Ingesti >= 1 ? 'danger' : 'safe'}">${RQ_Ingesti.toFixed(2)}</span></p>
+      `;
+
+      const mitigasi = (RQ_Inhalasi >= 1 || RQ_Ingesti >= 1) ? `
+        <h3 class="danger">Paparan Berisiko!</h3>
+        <ul>
+          <li>Gunakan masker atau alat pelindung diri</li>
+          <li>Kurangi aktivitas di luar ruangan</li>
+          <li>Perbanyak konsumsi makanan tinggi antioksidan</li>
+        </ul>
+      ` : `
+        <h3 class="safe">Paparan Aman</h3>
+        <ul>
+          <li>Terus pantau kualitas udara</li>
+          <li>Hidup sehat dan tetap waspada</li>
+        </ul>
+      `;
+
+      document.getElementById("result").innerHTML = hasil + mitigasi;
+
+      updateChart(RQ_Inhalasi, RQ_Ingesti);
+    }
+
+    function updateChart(rq1, rq2) {
+      const ctx = document.getElementById("chart").getContext("2d");
+      if (window.myChart) window.myChart.destroy();
+
+      window.myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["RQ Inhalasi", "RQ Ingesti"],
+          datasets: [{
+            label: "Risk Quotient",
+            data: [rq1, rq2],
+            backgroundColor: [
+              rq1 >= 1 ? "#ff4d4d" : "#66cc66",
+              rq2 >= 1 ? "#ff4d4d" : "#66cc66"
+            ]
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    const map = L.map('map').setView([-6.2, 106.8], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const titikPemantauan = [
+      { nama: "Stasiun DKI1", lat: -6.2, lon: 106.85 },
+      { nama: "Stasiun DKI2", lat: -6.3, lon: 106.9 },
+    ];
+
+    titikPemantauan.forEach(tp => {
+      L.marker([tp.lat, tp.lon]).addTo(map).bindPopup(tp.nama);
+    });
+  </script>
+</body>
+</html>
