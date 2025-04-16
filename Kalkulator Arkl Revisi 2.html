@@ -15,8 +15,7 @@
   </button>
 
   <!-- Sidebar -->
-  <button id="sidebarToggle" class="toggle-btn" aria-label="Toggle Sidebar">☰</button>
-  <aside id="sidebar" class="sidebar md:w-1/4 w-full hidden md:block bg-white">
+ <aside id="sidebar" class="hidden md:block w-full md:w-1/4 bg-white">
       <div class="profile text-center mb-6">
         <h3 class="font-bold text-green-600">IPB University</h3>
         <p class="text-sm text-gray-600">Geofisika dan Meteorologi</p>
@@ -183,16 +182,13 @@
 </div> 
   </main>
  <!-- Script untuk mengatur sidebar -->
-  <script>
-    const btn = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
+<script>
+  const toggleBtn = document.getElementById('toggleSidebar');
+  const sidebar = document.getElementById('sidebar');
 
-    // Event listener untuk toggle sidebar
-    btn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      mainContent.classList.toggle('shifted');
-    });
-  </script>
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('hidden');
+  });
+</script>
   </body>
 </html>
