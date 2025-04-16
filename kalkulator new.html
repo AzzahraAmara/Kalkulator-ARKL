@@ -14,7 +14,32 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Menambahkan beberapa penyesuaian untuk mobile */
+      @media (max-width: 768px) {
+        #sidebar {
+          position: fixed;
+          top: 0;
+          left: -250px;
+          width: 250px;
+          height: 100%;
+          background-color: #f3f4f6;
+          transition: left 0.3s ease;
+        }
 
+        #sidebar.open {
+          left: 0;
+        }
+
+        .main-content {
+          transition: margin-left 0.3s ease;
+        }
+
+        .main-content.shifted {
+          margin-left: 250px;
+        }
+      }
+    </style>
   </head>
 
   <body class="flex flex-col md:flex-row bg-kalkulator text-gray-800 min-h-screen">
@@ -116,7 +141,18 @@
   </div>
 </div>
   </main>
- 
+ <!-- Script untuk mengatur sidebar -->
+  <script>
+    const btn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+
+    // Event listener untuk toggle sidebar
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      mainContent.classList.toggle('shifted');
+    });
+  </script>
   <!--Script-->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -213,5 +249,6 @@
         hasilDiv.innerHTML = hasilHTML;
       });
     })
-  </script>   
+  </script>
+  </body>
 </html>
