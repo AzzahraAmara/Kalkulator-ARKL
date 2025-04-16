@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html lang="id">
-  <link rel="stylesheet" href="styles.css">
   <head>
-    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator ARKL – Analisis Risiko Kesehatan Lingkungan</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-
-    <!-- Tailwind CSS CDN -->
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
   </head>
-
   <body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
+    <!-- Toggle Button (hanya muncul di mobile) -->
+    <button id="toggleSidebar" class="md:hidden p-2 m-2 text-green-800">
+      ☰ Menu
+    </button>
+
     <!-- Sidebar -->
-    <aside class="sidebar md:w-1/4 w-full">
+    <aside id="sidebar" class="sidebar md:w-1/4 w-full hidden md:block fixed top-0 left-0 z-10 bg-white h-full shadow-md">
       <div class="profile text-center mb-6">
         <h3 class="font-bold text-green-600">IPB University</h3>
         <p class="text-sm text-gray-600">Geofisika dan Meteorologi</p>
         <img src="img/Logo IPB.png" alt="Logo IPB" class="mx-auto mt-4 w-24 rounded-full" />
       </div>
 
-      <!-- Menu -->
       <ul class="space-y-4 text-green-800 font-medium">
         <li><a href="./Kalkulator Arkl Revisi 2.html" class="hover:text-green-600">Tentang ARKL</a></li>
         <li><a href="./kalkulator new.html" class="hover:text-green-600">Kalkulator ARKL</a></li>
         <li><a href="./profil.html" class="hover:text-green-600">Profil</a></li>
       </ul>
     </aside>
-
+    
     <!-- Main Content -->
     <main class="flex-1 relative p-4 sm:p-6 md:p-8 space-y-8">
 
@@ -186,5 +180,20 @@
   </section>
 </div> 
   </main>
+        <!-- Script untuk mengontrol tampilan Sidebar -->
+    <script>
+      const btn = document.getElementById('toggleSidebar');
+      const sidebar = document.getElementById('sidebar');
+
+      // Event untuk toggle sidebar di mobile
+      btn.addEventListener('click', () => {
+        sidebar.classList.toggle('hidden'); // Menyembunyikan atau menampilkan sidebar
+      });
+
+      // Menambahkan class untuk membuka sidebar pada desktop
+      if (window.innerWidth >= 768) {
+        sidebar.classList.remove('hidden');
+      }
+    </script>
   </body>
 </html>
