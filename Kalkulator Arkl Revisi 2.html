@@ -6,6 +6,32 @@
     <title>Kalkulator ARKL – Analisis Risiko Kesehatan Lingkungan</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Menambahkan beberapa penyesuaian untuk mobile */
+      @media (max-width: 768px) {
+        #sidebar {
+          position: fixed;
+          top: 0;
+          left: -250px;
+          width: 250px;
+          height: 100%;
+          background-color: #f3f4f6;
+          transition: left 0.3s ease;
+        }
+
+        #sidebar.open {
+          left: 0;
+        }
+
+        .main-content {
+          transition: margin-left 0.3s ease;
+        }
+
+        .main-content.shifted {
+          margin-left: 250px;
+        }
+      }
+    </style>
   </head>
   <body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
     <!-- Toggle Button (hanya muncul di mobile) -->
@@ -180,20 +206,17 @@
   </section>
 </div> 
   </main>
-        <!-- Script untuk mengontrol tampilan Sidebar -->
-    <script>
-      const btn = document.getElementById('toggleSidebar');
-      const sidebar = document.getElementById('sidebar');
+ <!-- Script untuk mengatur sidebar -->
+  <script>
+    const btn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
 
-      // Event untuk toggle sidebar di mobile
-      btn.addEventListener('click', () => {
-        sidebar.classList.toggle('hidden'); // Menyembunyikan atau menampilkan sidebar
-      });
-
-      // Menambahkan class untuk membuka sidebar pada desktop
-      if (window.innerWidth >= 768) {
-        sidebar.classList.remove('hidden');
-      }
-    </script>
+    // Event listener untuk toggle sidebar
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      mainContent.classList.toggle('shifted');
+    });
+  </script>
   </body>
 </html>
