@@ -309,26 +309,3 @@ img.rounded-lg.shadow:hover {
     display: block;
   }
 }
-
-/* Responsive Sidebar */
-.sidebar {
-  transform: translateX(0);
-  transition: transform 0.3s ease;
-  width: 250px;
-  z-index: 999;
-}
-
-.sidebar.hidden {
-  transform: translateX(-100%);
-}
-
-/* Konten utama menyesuaikan */
-main {
-  margin-left: 270px;
-  transition: margin 0.3s ease;
-}
-
-.sidebar.hidden + main {
-  margin-left: 1rem;
-}
-
