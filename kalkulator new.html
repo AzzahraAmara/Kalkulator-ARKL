@@ -14,41 +14,12 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      /* Menambahkan beberapa penyesuaian untuk mobile */
-      @media (max-width: 768px) {
-        #sidebar {
-          position: fixed;
-          top: 0;
-          left: -250px;
-          width: 250px;
-          height: 100%;
-          background-color: #f3f4f6;
-          transition: left 0.3s ease;
-        }
-
-        #sidebar.open {
-          left: 0;
-        }
-
-        .main-content {
-          transition: margin-left 0.3s ease;
-        }
-
-        .main-content.shifted {
-          margin-left: 250px;
-        }
-      }
-    </style>
   </head>
 
 <body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
-  <!-- Toggle Button (Tombol untuk membuka/menutup sidebar) -->
-  <button id="toggleSidebar" class="p-4 text-green-800 bg-white fixed top-4 left-4 z-50">
-    ☰ Menu
-  </button>
 
   <!-- Sidebar -->
+  <button id="sidebarToggle" class="toggle-btn" aria-label="Toggle Sidebar">☰</button>
   <aside id="sidebar" class="sidebar md:w-1/4 w-full hidden md:block bg-white">
       <div class="profile text-center mb-6">
         <h3 class="font-bold text-green-600">IPB University</h3>
