@@ -15,11 +15,42 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <style>
+      /* Menambahkan beberapa penyesuaian untuk mobile */
+      @media (max-width: 768px) {
+        #sidebar {
+          position: fixed;
+          top: 0;
+          left: -250px;
+          width: 250px;
+          height: 100%;
+          background-color: #f3f4f6;
+          transition: left 0.3s ease;
+        }
+
+        #sidebar.open {
+          left: 0;
+        }
+
+        .main-content {
+          transition: margin-left 0.3s ease;
+        }
+
+        .main-content.shifted {
+          margin-left: 250px;
+        }
+      }
+    </style>
   </head>
 
-  <body class="flex flex-col md:flex-row bg-profil text-gray-800 min-h-screen">
-    <!-- Sidebar -->
-    <aside class="sidebar md:w-1/4 w-full">
+<body class="flex flex-col md:flex-row bg-arkl text-gray-800 min-h-screen">
+  <!-- Toggle Button (Tombol untuk membuka/menutup sidebar) -->
+  <button id="toggleSidebar" class="p-4 text-green-800 bg-white fixed top-4 left-4 z-50">
+    ☰ Menu
+  </button>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar md:w-1/4 w-full hidden md:block bg-white">
       <div class="profile text-center mb-6">
         <h3 class="font-bold text-green-600">IPB University</h3>
         <p class="text-sm text-gray-600">Geofisika dan Meteorologi</p>
@@ -113,5 +144,17 @@
 </div>
 </div>
   </main>
+   <!-- Script untuk mengatur sidebar -->
+  <script>
+    const btn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+
+    // Event listener untuk toggle sidebar
+    btn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      mainContent.classList.toggle('shifted');
+    });
+  </script>
 </body>
 </html>
